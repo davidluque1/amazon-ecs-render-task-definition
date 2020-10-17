@@ -11,7 +11,8 @@ async function run() {
     const imageURI = core.getInput('image', { required: true });
     const environmentVarName = core.getInput('environment-variable-name', { required: false })
     const environmentVarValue = core.getInput('environment-variable-value', { required: false })
-
+    console.log("Testing console.log")
+    console.log("Testing console.debug")
     // Parse the task definition
     const taskDefPath = path.isAbsolute(taskDefinitionFile) ?
       taskDefinitionFile :
