@@ -1153,6 +1153,8 @@ async function run() {
     const imageURI = core.getInput('image', { required: true });
     const environmentVarName = core.getInput('environment-variable-name', { required: false })
     const environmentVarValue = core.getInput('environment-variable-value', { required: false })
+    const loggingStage = core.getInput('logconfiguration-options-awslogs-group', {required: false})
+
     console.log("Testing console log")
     console.debug("Testing console debug")
     // Parse the task definition
@@ -1185,6 +1187,12 @@ async function run() {
       if (obj == undefined){
         containerDef.environment.push({name: environmentVarName, value: environmentVarValue})
       }
+
+      if (containerDef.logConfiguration.options["awslogs-group"] != undefined){
+        containerDef.logConfiguration.options["awslogs-group"] = loggingStage + "_containers"
+      }
+
+
     // Write out a new task definition file
     var updatedTaskDefFile = tmp.fileSync({
       tmpdir: process.env.RUNNER_TEMP,
