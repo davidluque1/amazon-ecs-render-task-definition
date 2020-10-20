@@ -1188,7 +1188,7 @@ async function run() {
         containerDef.environment.push({name: environmentVarName, value: environmentVarValue})
       }
 
-      if (containerDef.logConfiguration.options["awslogs-group"] != undefined){
+      if (loggingStage != undefined && containerDef.logConfiguration.options["awslogs-group"] != undefined){
         containerDef.logConfiguration.options["awslogs-group"] = loggingStage + "_containers"
       }
 
